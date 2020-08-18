@@ -13,3 +13,11 @@ class List:
 		del self.data[self.length]
 
 		return last_element
+
+	def insert(self, index, element):
+		if index > self.length:
+			self.data[self.length] = element
+			self.length += 1
+		else:
+			element_at_index = self.data[index]
+			self.data[index] = element
