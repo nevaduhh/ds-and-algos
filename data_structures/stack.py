@@ -11,4 +11,5 @@ class Stack():
 		self.length -= 1
 		last_element = self.data[self.length]
 		del self.data[self.length]
+
 		return last_element

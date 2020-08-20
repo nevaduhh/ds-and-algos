@@ -1,4 +1,4 @@
-class CustomArray {
+class Array {
 	constructor() {
 		this.data = {};
 		this.length = 0;
