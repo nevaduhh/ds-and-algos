@@ -31,6 +31,7 @@ class List:
 
 	def count(self, element):
 		count = 0
+
 		for value in self.data.values():
 			if value == element:
 				count += 1
