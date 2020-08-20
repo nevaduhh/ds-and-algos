@@ -29,3 +29,18 @@ class List:
 	def copy(self):
 		return self.data
 
+	def count(self, element):
+		count = 0
+		for value in self.data.values():
+			if value == element:
+				count += 1
+
+		return count
+
+	def index(self, element):
+		for key, value in self.data.items():
+			if value == element:
+				return key
+
+		raise ValueError
+
