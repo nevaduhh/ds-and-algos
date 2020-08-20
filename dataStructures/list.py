@@ -21,3 +21,11 @@ class List:
 		else:
 			element_at_index = self.data[index]
 			self.data[index] = element
+
+	def clear(self):
+		self.data = {}
+		self.length = 0
+
+	def copy(self):
+		return self.data
+
