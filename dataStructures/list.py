@@ -44,3 +44,20 @@ class List:
 
 		raise ValueError
 
+	def remove(self, element):
+		for key, value in self.data.items():
+			if value == element:
+				del self.data[key]
+				self.length -= 1
+
+		raise ValueError
+
+	def reverse(self):
+		reversed_data = {}
+		original_length = self.length
+
+		for key, value in self.data.items():
+			original_length -= 1
+			reversed_data[original_length] = value
+
+		self.data = reversed_data
