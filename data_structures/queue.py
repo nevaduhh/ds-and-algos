@@ -26,3 +26,8 @@ class Queue():
 		else:
 			raise KeyError
 	
+	def peek(self):
+		if len(self.data):
+			return self.data[0]
+		else:
+			return None
