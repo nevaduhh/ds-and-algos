@@ -1,7 +1,7 @@
 class Queue():
 	def __init__(self):
-		self.data = {};
-		self.length = 0;
+		self.data = {}
+		self.length = 0
 
 	def add(self, element):
 		self.data[self.length] = element
