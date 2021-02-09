@@ -20,6 +20,77 @@
         - 13 or 16 digits long
 */
 
+int calculate_length(long num);
+int calculate_sum_of_digits(int num);
+string concatenate_digits(int digit_1, int digit_2);
+string determine_card_type(int digit_1, int digit_2);
+
+int main(void)
+{
+  long credit_card_num = get_long("Credit card number? ");
+  int length = calculate_length(credit_card_num);
+
+  // validate length
+  if (length == 13 || length == 15 || length == 16)
+  {
+    int even_nums_sum = 0;
+    int odd_nums_sum = 0;
+
+    int first_digit;
+    int second_digit;
+
+    // iterate over numbers to calculate sum of even & odd digits and first & last digits
+    for (int i = length; i >= 0; i--)
+    {
+      int digit = credit_card_num % 10;
+
+      if (i == 1)
+      {
+        first_digit = digit;
+      }
+
+      if (i == 2)
+      {
+        second_digit = digit;
+      }
+
+      int place = length % 2 == 0 ? i : i + 1;
+
+      if (place % 2 != 0)
+      {
+        int double_digit = digit * 2;
+        int digits_sum = calculate_sum_of_digits(double_digit);
+
+        even_nums_sum += digits_sum;
+      }
+      else
+      {
+        odd_nums_sum += digit;
+      }
+
+      credit_card_num /= 10;
+    }
+
+    int total_sum = even_nums_sum + odd_nums_sum;
+    int last_digit = total_sum % 10;
+
+    if (last_digit == 0)
+    {
+      string card_type = determine_card_type(first_digit, second_digit);
+
+      printf("%s\n", card_type);
+    }
+    else
+    {
+      printf("%s\n", "INVALID");
+    }
+  }
+  else
+  {
+    printf("%s\n", "INVALID");
+  }
+}
+
 int calculate_length(long num)
 {
   long num_copy = num;
@@ -92,70 +163,4 @@ string determine_card_type(int digit_1, int digit_2)
   }
 
   return "INVALID";
-}
-
-int main(void)
-{
-  long credit_card_num = get_long("Credit card number? ");
-  int length = calculate_length(credit_card_num);
-
-  // validate length
-  if (length == 13 || length == 15 || length == 16)
-  {
-    int even_nums_sum = 0;
-    int odd_nums_sum = 0;
-
-    int first_digit;
-    int second_digit;
-
-    // iterate over numbers to calculate sum of even & odd digits and first & last digits
-    for (int i = length; i >= 0; i--)
-    {
-      int digit = credit_card_num % 10;
-
-      if (i == 1)
-      {
-        first_digit = digit;
-      }
-
-      if (i == 2)
-      {
-        second_digit = digit;
-      }
-
-      int place = length % 2 == 0 ? i : i + 1;
-
-      if (place % 2 != 0)
-      {
-        int double_digit = digit * 2;
-        int digits_sum = calculate_sum_of_digits(double_digit);
-
-        even_nums_sum += digits_sum;
-      }
-      else
-      {
-        odd_nums_sum += digit;
-      }
-
-      credit_card_num /= 10;
-    }
-
-    int total_sum = even_nums_sum + odd_nums_sum;
-    int last_digit = total_sum % 10;
-
-    if (last_digit == 0)
-    {
-      string card_type = determine_card_type(first_digit, second_digit);
-
-      printf("%s\n", card_type);
-    }
-    else
-    {
-      printf("%s\n", "INVALID");
-    }
-  }
-  else
-  {
-    printf("%s\n", "INVALID");
-  }
 }
