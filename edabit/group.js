@@ -89,3 +89,19 @@ const group = (arr, size) => {
 const result = group([1, 2, 3, 4], 2)
 
 console.log(result);
+
+// cleaner approach
+const group2 = (arr, size) => {
+  const length = Math.ceil(arr.length / size);
+  const result = Array.from({ length }, () => []);
+
+  for (let i = 0; i < arr.length; i++) {
+    result[i % length].push(arr[i]);
+  }
+
+  return result;
+};
+
+const result2 = group2([1, 2, 3, 4, 5, 6, 7], 4)
+
+console.log(result2);
