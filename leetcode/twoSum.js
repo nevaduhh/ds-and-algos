@@ -31,7 +31,7 @@
     output = [0, 1]
 
   TIME COMPLEXITY
-    O(n)
+    O(n^2)
 
 */
 
@@ -57,3 +57,35 @@ const result = twoSum([2,7,11,15], 9);
 
 console.log(result);
 
+/* ------------------------------------------------------------------------------------------------ */
+
+/* 
+  APPROACH
+    0. create cache constant
+    1. iterate over nums array
+    2. get the difference of target and current num
+    3. if difference is keyed on the cache obj, return [current loop index, index of keyed property]
+    4. assign key of current num with value of current index
+
+  TIME COMPLEXITY
+    O(n)
+*/
+
+const twoSum2 = (nums, target) => {
+  const cache = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    const currNum = nums[i];
+    const difference = target - currNum;
+
+    if (cache.hasOwnProperty(difference)) {
+      return [cache[difference], i]
+    }
+
+    cache[currNum] = i;
+  }
+};
+
+const result2 = twoSum2([2,7,11,15], 9);
+
+console.log(result2);
