@@ -15,6 +15,8 @@
 
 // Follow up: Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
 
+const TEST_INPUT = ['h', 'e', 'l', 'l', 'o'];
+
 /* 
   INPUT
     array of chars
@@ -40,3 +42,38 @@ const reverseString = (strArr) => {
 
   return reversedArr;
 }
+
+console.log(reverseString(TEST_INPUT));
+
+// declarative approach (but still requires new array)
+const reverseStringReduceRight = (strArr) => {
+  return strArr.reduceRight((reversedArr, currVal) => {
+    reversedArr.push(currVal);
+
+    return reversedArr;
+  }, []);
+};
+
+console.log(reverseStringReduceRight(TEST_INPUT));
+
+/* 
+  APPROACH
+    1. iterate over array
+      2. swap curr val relative from beginning of array with val relative to end
+*/
+
+// best approach: O(1) memory and O(n/2) time
+const reverseStringBest = (strArr) => {
+  for (let i = 0; i < Math.floor(strArr.length / 2); i++) {
+    const currVal = strArr[i];
+    const endIndex = strArr.length - i - 1;
+    const endVal = strArr[endIndex];
+
+    strArr[i] = endVal;
+    strArr[endIndex] = currVal;
+  }
+
+  return strArr;
+}
+
+console.log(reverseStringBest(TEST_INPUT));
